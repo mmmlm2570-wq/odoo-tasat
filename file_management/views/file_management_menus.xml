@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_file_management_root" name="إدارة الملفات" sequence="10" groups="file_management.group_file_management_user,file_management.group_file_management_manager"/>
+    <menuitem id="menu_file_management_document" name="الملفات" parent="menu_file_management_root" action="action_file_management_document" sequence="10"/>
+    <menuitem id="menu_file_management_category" name="التصنيفات" parent="menu_file_management_root" action="action_file_management_category" sequence="20" groups="file_management.group_file_management_manager"/>
+</odoo>
+
