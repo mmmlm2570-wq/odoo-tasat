@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo noupdate="1">
+    <record id="category_contracts" model="file.management.category"><field name="name">عقود</field></record>
+    <record id="category_invoices" model="file.management.category"><field name="name">فواتير</field></record>
+    <record id="category_documents" model="file.management.category"><field name="name">مستندات</field></record>
+    <record id="category_correspondence" model="file.management.category"><field name="name">مراسلات</field></record>
+    <record id="category_employee_files" model="file.management.category"><field name="name">ملفات الموظفين</field></record>
+    <record id="category_customer_files" model="file.management.category"><field name="name">ملفات العملاء</field></record>
+    <record id="category_other" model="file.management.category"><field name="name">أخرى</field></record>
+</odoo>
+
