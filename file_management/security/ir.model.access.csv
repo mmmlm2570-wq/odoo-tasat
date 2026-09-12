@@ -1,0 +1,6 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_file_management_document_user,file.management.document.user,model_file_management_document,file_management.group_file_management_user,1,1,1,0
+access_file_management_document_manager,file.management.document.manager,model_file_management_document,file_management.group_file_management_manager,1,1,1,1
+access_file_management_category_user,file.management.category.user,model_file_management_category,file_management.group_file_management_user,1,0,0,0
+access_file_management_category_manager,file.management.category.manager,model_file_management_category,file_management.group_file_management_manager,1,1,1,1
+
