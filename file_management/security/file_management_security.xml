@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="module_category_file_management" model="ir.module.category">
+        <field name="name">إدارة الملفات</field>
+        <field name="sequence">35</field>
+    </record>
+
+    <record id="group_file_management_user" model="res.groups">
+        <field name="name">مستخدم</field>
+        <field name="category_id" ref="file_management.module_category_file_management"/>
+    </record>
+
+    <record id="group_file_management_manager" model="res.groups">
+        <field name="name">مدير</field>
+        <field name="category_id" ref="file_management.module_category_file_management"/>
+    </record>
+
+    <record id="file_management_document_user_write_own_rule" model="ir.rule">
+        <field name="name">Users can edit their own files</field>
+        <field name="model_id" ref="model_file_management_document"/>
+        <field name="groups" eval="[(4, ref('file_management.group_file_management_user'))]"/>
+        <field name="domain_force">[('create_uid', '=', user.id)]</field>
+        <field name="perm_read" eval="0"/>
+        <field name="perm_write" eval="1"/>
+        <field name="perm_create" eval="0"/>
+        <field name="perm_unlink" eval="0"/>
+    </record>
+</odoo>
+
