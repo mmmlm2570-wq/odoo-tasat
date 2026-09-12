@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_file_management_document_list" model="ir.ui.view">
+        <field name="name">file.management.document.list</field>
+        <field name="model">file.management.document</field>
+        <field name="arch" type="xml">
+            <list string="إدارة الملفات" default_order="document_date desc, create_date desc">
+                <field name="name"/>
+                <field name="category_id"/>
+                <field name="file_name"/>
+                <field name="document_date"/>
+                <field name="uploaded_by"/>
+                <field name="uploaded_on"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_file_management_document_form" model="ir.ui.view">
+        <field name="name">file.management.document.form</field>
+        <field name="model">file.management.document</field>
+        <field name="arch" type="xml">
+            <form string="ملف">
+                <sheet>
+                    <div class="oe_title"><label for="name"/><h1><field name="name" placeholder="اسم الملف"/></h1></div>
+                    <group>
+                        <group>
+                            <field name="category_id" options="{'no_create_edit': false}"/>
+                            <field name="document_date"/>
+                        </group>
+                        <group string="معلومات الرفع">
+                            <field name="uploaded_by"/>
+                            <field name="uploaded_on"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="description" placeholder="وصف مختصر..."/>
+                    </group>
+                    <group string="المرفق">
+                        <field name="file_data" filename="file_name"/>
+                        <field name="file_name" invisible="1"/>
+                    </group>
+                    <group string="ملاحظات"><field name="notes" placeholder="ملاحظات إضافية..."/></group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_file_management_document_kanban" model="ir.ui.view">
+        <field name="name">file.management.document.kanban</field>
+        <field name="model">file.management.document</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/><field name="category_id"/><field name="document_date"/><field name="uploaded_by"/>
+                <templates>
+                    <t t-name="card">
+                        <div class="oe_kanban_global_click">
+                            <strong><field name="name"/></strong>
+                            <div><field name="category_id" widget="badge"/></div>
+                            <div><field name="document_date"/></div>
+                            <small><field name="uploaded_by"/></small>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
+    <record id="view_file_management_document_search" model="ir.ui.view">
+        <field name="name">file.management.document.search</field>
+        <field name="model">file.management.document</field>
+        <field name="arch" type="xml">
+            <search string="البحث في الملفات">
+                <field name="name"/><field name="description"/><field name="category_id"/><field name="uploaded_by"/>
+                <filter string="اليوم" name="today" domain="[('document_date', '=', context_today())]"/>
+                <filter string="أضافه أنا" name="my_files" domain="[('create_uid', '=', uid)]"/>
+                <group expand="0" string="تجميع حسب">
+                    <filter string="التصنيف" name="group_category" context="{'group_by': 'category_id'}"/>
+                    <filter string="تاريخ الملف" name="group_date" context="{'group_by': 'document_date'}"/>
+                    <filter string="أضافه" name="group_uploader" context="{'group_by': 'create_uid'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="action_file_management_document" model="ir.actions.act_window">
+        <field name="name">إدارة الملفات</field>
+        <field name="res_model">file.management.document</field>
+        <field name="view_mode">list,kanban,form</field>
+        <field name="search_view_id" ref="view_file_management_document_search"/>
+        <field name="context">{'search_default_my_files': 0}</field>
+    </record>
+</odoo>
+
